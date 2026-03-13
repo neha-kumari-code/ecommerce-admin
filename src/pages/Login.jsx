@@ -13,7 +13,7 @@ const Login = () => {
     const submitHandler=async(e)=>{
         e.preventDefault();
         try {
-            const {data}=await axios.post(backendUrl+'/api/admin/login',{email,password})
+            const {data}=await axios.post(`${backendUrl}/api/admin/login`,{email,password})
             if(data.success){
                 localStorage.setItem('aToken',data.adminToken)
                 setAdminToken(data.adminToken)
@@ -28,7 +28,7 @@ const Login = () => {
     }
     useEffect(()=>{
         if(adminToken){
-            navigate('/admin/home')
+            navigate('/admin')
         }
     },[adminToken,navigate])
   return (
@@ -51,7 +51,7 @@ const Login = () => {
                 
                 </div>
             </div>
-            <button type='submit' className='bg-blue-600 text-white text-xl font-semibold h-9 rounded mt-2 w-full'>Login</button>
+            <button type='submit' className='bg-blue-600 text-white text-xl font-semibold h-9 rounded mt-2 w-full cursor-pointer'>Login</button>
         </div>
         </div>
     </div>
